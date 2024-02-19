@@ -10,10 +10,24 @@
 #  movie_id   :integer
 #
 class Character < ApplicationRecord
+
+  # meta method:
+  belongs_to(:name_that_we_want, { :class_name => "", :foreign_key => ""})
+
   def movie
     key = self.movie_id
 
     matching_set = Movie.where({ :id => key })
+
+    the_one = matching_set.at(0)
+
+    return the_one
+  end
+
+  def actor
+    key = self.actor_id
+
+    matching_set = Actor.where({ :id => key })
 
     the_one = matching_set.at(0)
 
